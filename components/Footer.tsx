@@ -8,7 +8,7 @@ const footerLinks = {
     { label: "Team", href: "#about" },
     { label: "Impact", href: "#causes" },
   ],
-  Get Involved: [
+  "Get Involved": [
     { label: "Donate", href: "#donate" },
     { label: "Volunteer", href: "#contact" },
     { label: "Partner", href: "#contact" },
