@@ -70,6 +70,7 @@ export default function Gallery() {
               className="object-cover transition duration-500"
               sizes="(max-width: 1024px) 100vw, 1280px"
               priority={active === 0}
+              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-forest-950/80 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -97,6 +98,7 @@ export default function Gallery() {
                   fill
                   className="object-cover"
                   sizes="80px"
+                  unoptimized
                 />
               </motion.button>
             ))}

@@ -32,6 +32,7 @@ export default function About() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-forest-950/60 to-transparent" />
             </div>

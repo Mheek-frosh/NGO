@@ -75,6 +75,7 @@ export default function Causes() {
                   fill
                   className="object-cover transition duration-500 group-hover:scale-105"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">

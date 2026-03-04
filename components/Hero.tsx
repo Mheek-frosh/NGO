@@ -18,6 +18,7 @@ export default function Hero() {
           className="object-cover"
           priority
           sizes="100vw"
+          unoptimized
         />
         {/* Uncomment and set src to your video for a video hero (e.g. MP4 from Pexels/your CDN) */}
         {/* <video autoPlay muted loop playsInline className="absolute inset-0 h-full w-full object-cover" src="/hero-video.mp4" /> */}
