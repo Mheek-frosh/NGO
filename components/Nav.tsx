@@ -24,7 +24,7 @@ export default function Nav() {
       className="fixed top-0 left-0 right-0 z-50"
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <a href="#hero" className="font-display text-xl font-bold text-forest-950">
+        <a href="#hero" className="font-display text-xl font-bold text-white">
           Hope in Action
         </a>
 
@@ -39,7 +39,7 @@ export default function Nav() {
             >
               <a
                 href={link.href}
-                className="text-sm font-medium text-forest-900 transition hover:text-forest-700"
+                className="text-sm font-medium text-white transition hover:text-white/80"
               >
                 {link.label}
               </a>
@@ -67,15 +67,15 @@ export default function Nav() {
         >
           <motion.span
             animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-            className="h-0.5 w-6 bg-forest-950"
+            className="h-0.5 w-6 bg-white"
           />
           <motion.span
             animate={open ? { opacity: 0 } : { opacity: 1 }}
-            className="h-0.5 w-6 bg-forest-950"
+            className="h-0.5 w-6 bg-white"
           />
           <motion.span
             animate={open ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-            className="h-0.5 w-6 bg-forest-950"
+            className="h-0.5 w-6 bg-white"
           />
         </button>
       </nav>
