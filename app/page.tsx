@@ -1,17 +1,16 @@
 import Hero from "@/components/Hero";
+import Sponsors from "@/components/Sponsors";
 import Stats from "@/components/Stats";
-// import FeaturedCauses from "@/components/FeaturedCauses";
-// import Impact from "@/components/Impact";
+import StoryVideo from "@/components/StoryVideo";
 import CTA from "@/components/CTA";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <Sponsors />
       <Stats />
-      {/* We will build these previews next */}
-      {/* <FeaturedCauses /> */}
-      {/* <Impact /> */}
+      <StoryVideo />
       <CTA />
     </>
   );

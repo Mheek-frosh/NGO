@@ -1,9 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { ArrowRight, Globe, Shield, Target } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import StoryVideo from "@/components/StoryVideo";
+import Timeline from "@/components/Timeline";
 
 export default function AboutPage() {
     return (
@@ -130,6 +132,12 @@ export default function AboutPage() {
                     </div>
                 </div>
             </section>
+
+            {/* Timeline Section */}
+            <Timeline />
+
+            {/* Story Video Section */}
+            <StoryVideo />
 
             {/* Stats Section */}
             <section className="bg-forest-900 py-24 text-white">
