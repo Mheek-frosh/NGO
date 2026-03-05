@@ -10,18 +10,22 @@ const config: Config = {
     extend: {
       colors: {
         forest: {
-          950: "#0D2818",
-          900: "#1B4332",
-          800: "#2D6A4F",
-          700: "#40916C",
-          600: "#52B788",
-          500: "#74C69D",
-          400: "#95D5B2",
-          300: "#B7E4C7",
+          950: "#0A1F16",
+          900: "#103123",
+          800: "#1A4F38",
+          700: "#246B4E",
+          600: "#31926A",
+          500: "#41B886",
+          400: "#60CBA0",
+          300: "#86DDB8",
         },
-        cream: "#F8F4ED",
-        coral: "#E07A5F",
-        sand: "#EDE7E3",
+        cream: "#F9FAF9",
+        coral: "#FF6B6B",
+        sand: "#F4F4F5",
+        surface: {
+          light: "#FFFFFF",
+          dark: "#09090B",
+        }
       },
       fontFamily: {
         display: ["var(--font-syne)", "system-ui", "sans-serif"],
@@ -30,6 +34,9 @@ const config: Config = {
       animation: {
         "float": "float 6s ease-in-out infinite",
         "shimmer": "shimmer 2s linear infinite",
+        "fade-in-up": "fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "reveal": "reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards",
       },
       keyframes: {
         float: {
@@ -40,10 +47,19 @@ const config: Config = {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        fadeInUp: {
+          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        reveal: {
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0)" },
+        }
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "hero-pattern": "linear-gradient(135deg, rgba(13,40,24,0.92) 0%, rgba(27,67,50,0.85) 50%, rgba(45,106,79,0.7) 100%)",
+        "hero-pattern": "linear-gradient(135deg, rgba(10,31,22,0.95) 0%, rgba(26,79,56,0.85) 50%, rgba(49,146,106,0.7) 100%)",
+        "glass-gradient": "linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%)",
       },
     },
   },

@@ -1,21 +1,18 @@
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Causes from "@/components/Causes";
-import Programs from "@/components/Programs";
-import Gallery from "@/components/Gallery";
-import Donate from "@/components/Donate";
-import Contact from "@/components/Contact";
+import Stats from "@/components/Stats";
+// import FeaturedCauses from "@/components/FeaturedCauses";
+// import Impact from "@/components/Impact";
+import CTA from "@/components/CTA";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <About />
-      <Causes />
-      <Programs />
-      <Gallery />
-      <Donate />
-      <Contact />
+      <Stats />
+      {/* We will build these previews next */}
+      {/* <FeaturedCauses /> */}
+      {/* <Impact /> */}
+      <CTA />
     </>
   );
 }

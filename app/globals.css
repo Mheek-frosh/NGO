@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --forest-950: #0D2818;
-  --forest-900: #1B4332;
-  --forest-800: #2D6A4F;
-  --forest-700: #40916C;
-  --coral: #E07A5F;
-  --cream: #F8F4ED;
-  --sand: #EDE7E3;
+  --forest-950: #0A1F16;
+  --forest-900: #103123;
+  --forest-800: #1A4F38;
+  --forest-700: #246B4E;
+  --coral: #FF6B6B;
+  --cream: #F9FAF9;
+  --sand: #F4F4F5;
 }
 
 html {
@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  @apply bg-cream text-forest-950 antialiased;
+  @apply bg-cream text-forest-950 antialiased overflow-x-hidden;
 }
 
 /* Custom scrollbar */
@@ -30,19 +30,35 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-forest-700 rounded-full;
+  @apply bg-forest-700 rounded-full border-2 border-sand;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-forest-800;
 }
 
-/* Gradient text utility */
-.gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-forest-700 to-forest-600;
+/* Utilities */
+@layer utilities {
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-forest-700 to-forest-500;
+  }
+  
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+  
+  .glass-dark {
+    @apply bg-forest-950/40 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
 }
 
-/* Glass effect */
-.glass {
-  @apply bg-white/10 backdrop-blur-md border border-white/20;
+/* Typography refinements */
+h1, h2, h3, h4, h5, h6 {
+  @apply tracking-tight;
 }
