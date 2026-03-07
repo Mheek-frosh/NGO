@@ -1,146 +1,213 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, X, Heart } from "lucide-react";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/causes", label: "Causes" },
-  { href: "/programs", label: "Programs" },
-  { href: "/contact", label: "Contact" },
+const languages = [
+  "العربية",
+  "中文",
+  "English",
+  "Français",
+  "Deutsch",
+  "Kreyòl",
+  "Bahasa Indonesia",
+  "Italiano",
+  "Polski",
+  "Русский",
+  "Español",
+];
+
+const mainLinks = [
+  { href: "#about", label: "About Us", sub: true },
+  { href: "#work", label: "Our Work", sub: true },
+  { href: "#news", label: "Events and News" },
+  { href: "#involved", label: "Get Involved" },
+  { href: "#pulse", label: "The Tony Foundation Pulse" },
 ];
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent ${scrolled ? "bg-white/80 backdrop-blur-xl border-white/20 shadow-sm py-4" : "bg-transparent py-6"
-        }`}
-    >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
-        <Link href="/" className={`font-display text-2xl font-bold tracking-tight z-50 transition-colors ${scrolled ? "text-forest-950" : "text-white"}`}>
-          Hope<span className="text-coral">InAction</span>
-        </Link>
+    <header className="sticky top-0 z-50 bg-un-navy shadow-lg">
+      {/* Skip to main content - UN style */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-un-blue focus:px-4 focus:py-2 focus:text-white"
+      >
+        Skip to main content
+      </a>
 
-        {/* Desktop */}
-        <ul className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-          {links.map((link, i) => {
-            const isActive = pathname === link.href;
-            return (
-              <motion.li
-                key={link.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * i, duration: 0.5 }}
-              >
-                <Link
+      {/* Top bar: Languages LEFT, Welcome RIGHT - exact UN layout */}
+      <div className="border-b border-un-blue/30 bg-un-navy">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-sm lg:px-8">
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setLangOpen(!langOpen)}
+              className="flex items-center gap-1 text-white/90 hover:text-white"
+              aria-expanded={langOpen}
+              aria-haspopup="true"
+            >
+              <span>Toggle navigation</span>
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <AnimatePresence>
+              {langOpen && (
+                <motion.ul
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  className="absolute left-0 top-full z-50 mt-1 min-w-[180px] list-none rounded border border-un-blue/30 bg-un-navy py-2 shadow-xl"
+                >
+                  {languages.map((lang) => (
+                    <li key={lang}>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 text-white/90 hover:bg-un-blue/30 hover:text-white"
+                      >
+                        {lang}
+                      </a>
+                    </li>
+                  ))}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </div>
+          <span className="text-un-blue-light">Welcome to Tony Foundation</span>
+        </div>
+      </div>
+
+      {/* Search the United Nations - UN style block */}
+      <div className="border-b border-un-blue/20 bg-un-navy/98">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 lg:px-8">
+          <div className="flex flex-1 flex-wrap items-center gap-4">
+            <h2 className="text-lg font-semibold text-white">Search Tony Foundation</h2>
+            <form className="flex min-w-0 flex-1 gap-2 sm:min-w-[280px]" onSubmit={(e) => e.preventDefault()}>
+              <label htmlFor="site-search" className="sr-only">Search</label>
+              <input
+                id="site-search"
+                type="search"
+                placeholder="Search..."
+                className="min-w-0 flex-1 rounded border border-un-blue/40 bg-white px-3 py-2 text-un-navy placeholder:text-slate-400 focus:border-un-blue focus:outline-none"
+              />
+              <button type="submit" className="rounded bg-un-blue px-4 py-2 text-sm font-medium text-white hover:bg-un-blue-light">
+                Submit Search
+              </button>
+            </form>
+          </div>
+          <a href="#" className="text-sm text-un-blue-light hover:text-white">A-Z Site Index</a>
+        </div>
+      </div>
+
+      {/* Live now - UN has this */}
+      <div className="border-b border-un-blue/20 bg-un-navy">
+        <div className="mx-auto max-w-7xl px-4 py-2 lg:px-8">
+          <span className="text-sm text-un-blue-light">Live now</span>
+        </div>
+      </div>
+
+      {/* Logo + tagline - UN style */}
+      <div className="border-b border-un-blue/20 bg-un-navy">
+        <div className="mx-auto max-w-7xl px-4 py-4 lg:px-8">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
+            <a href="#hero" className="font-display text-2xl font-bold text-white sm:text-3xl">
+              Tony Foundation
+            </a>
+            <p className="text-sm text-un-blue-light sm:text-base">
+              Peace, dignity and equality on a healthy planet
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Main navigation - UN style */}
+      <nav className="border-t border-un-blue/20 bg-un-navy" aria-label="Main">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <ul className="hidden items-center gap-0 md:flex">
+            {mainLinks.map((link) => (
+              <li key={link.href}>
+                <a
                   href={link.href}
-                  className={`text-sm font-medium transition-all relative group ${scrolled
-                      ? isActive ? "text-forest-700 font-semibold" : "text-forest-950/70 hover:text-forest-900"
-                      : isActive ? "text-white font-semibold" : "text-white/80 hover:text-white"
-                    }`}
+                  className="block px-4 py-3 text-sm font-medium text-white hover:bg-un-blue/20 transition"
                 >
                   {link.label}
-                  <span className={`absolute -bottom-1.5 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 ${scrolled ? "bg-forest-600" : "bg-white"
-                    } ${isActive ? "scale-x-100" : ""}`} />
-                </Link>
-              </motion.li>
-            );
-          })}
-        </ul>
+                  {link.sub && <span className="ml-0.5 text-un-blue-light">»</span>}
+                </a>
+              </li>
+            ))}
+            <li className="ml-auto">
+              <a
+                href="#donate"
+                className="block bg-un-blue px-5 py-3 text-sm font-semibold text-white hover:bg-un-blue-light transition"
+              >
+                Donate
+              </a>
+            </li>
+          </ul>
 
-        <div className="hidden md:flex items-center gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
-            <Link
-              href="/donate"
-              className={`group flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold transition-all shadow-lg hover:shadow-xl ${scrolled
-                  ? "bg-forest-950 text-white hover:bg-forest-900"
-                  : "bg-white text-forest-950 hover:bg-white/90"
-                }`}
+          <div className="flex items-center justify-between py-3 md:hidden">
+            <span className="text-sm text-white/80">Menu</span>
+            <button
+              type="button"
+              onClick={() => setOpen(!open)}
+              className="flex flex-col gap-1.5 p-2"
+              aria-label="Toggle menu"
             >
-              Donate
-              <Heart className={`w-4 h-4 transition-transform group-hover:scale-110 ${scrolled ? "text-coral" : "text-coral"}`} />
-            </Link>
-          </motion.div>
+              <motion.span
+                animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                className="h-0.5 w-6 bg-white"
+              />
+              <motion.span
+                animate={open ? { opacity: 0 } : { opacity: 1 }}
+                className="h-0.5 w-6 bg-white"
+              />
+              <motion.span
+                animate={open ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                className="h-0.5 w-6 bg-white"
+              />
+            </button>
+          </div>
         </div>
 
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setOpen(!open)}
-          className={`flex items-center justify-center p-2 rounded-full md:hidden z-50 transition-colors ${open ? "text-forest-950 bg-white" : scrolled ? "text-forest-950" : "text-white"
-            }`}
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </nav>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20, transition: { duration: 0.2 } }}
-            className="absolute top-0 left-0 w-full h-screen bg-white/95 backdrop-blur-3xl md:hidden overflow-hidden flex flex-col pt-24 pb-8 px-6"
-          >
-            <ul className="flex flex-col gap-6 text-center">
-              {links.map((link, i) => (
-                <motion.li
-                  key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * i }}
-                >
-                  <Link
-                    href={link.href}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden border-t border-un-blue/20 bg-slate-850 md:hidden"
+            >
+              <ul className="flex flex-col py-2">
+                {mainLinks.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className="block px-4 py-3 text-white hover:bg-un-blue/20"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <a
+                    href="#donate"
                     onClick={() => setOpen(false)}
-                    className={`block text-3xl font-display font-medium ${pathname === link.href ? "text-forest-700" : "text-forest-950"}`}
+                    className="mx-4 mt-2 block bg-un-blue py-3 text-center font-semibold text-white"
                   >
-                    {link.label}
-                  </Link>
-                </motion.li>
-              ))}
-              <motion.li
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="mt-8"
-              >
-                <Link
-                  href="/donate"
-                  onClick={() => setOpen(false)}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-forest-950 px-8 py-4 text-lg font-semibold text-white shadow-xl hover:bg-forest-900 w-full max-w-xs mx-auto"
-                >
-                  Donate Now
-                  <Heart className="w-5 h-5 text-coral" fill="currentColor" />
-                </Link>
-              </motion.li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+                    Donate
+                  </a>
+                </li>
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </header>
   );
 }

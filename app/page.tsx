@@ -1,21 +1,33 @@
 import Hero from "@/components/Hero";
-import Sponsors from "@/components/Sponsors";
-import FeaturedCauses from "@/components/FeaturedCauses";
-import Stats from "@/components/Stats";
-import StoryVideo from "@/components/StoryVideo";
-import Testimonials from "@/components/Testimonials";
-import CTA from "@/components/CTA";
+import LiveNews from "@/components/LiveNews";
+import SDGSection from "@/components/SDGSection";
+import MoreFrom from "@/components/MoreFrom";
+import WhatWeDo from "@/components/WhatWeDo";
+import Structure from "@/components/Structure";
+import LearnMore from "@/components/LearnMore";
+import DidYouKnow from "@/components/DidYouKnow";
+import WatchListen from "@/components/WatchListen";
+import InPictures from "@/components/InPictures";
+import GetInvolved from "@/components/GetInvolved";
+import Donate from "@/components/Donate";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Sponsors />
-      <FeaturedCauses />
-      <Stats />
-      <StoryVideo />
-      <Testimonials />
-      <CTA />
+      <LiveNews />
+      <SDGSection />
+      <MoreFrom />
+      <WhatWeDo />
+      <Structure />
+      <LearnMore />
+      <DidYouKnow />
+      <WatchListen />
+      <InPictures />
+      <GetInvolved />
+      <Donate />
+      <Contact />
     </>
   );
 }

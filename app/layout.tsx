@@ -17,9 +17,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Hope in Action | NGO for Community & Environment",
+  title: "Tony Foundation | Dignity, equality and hope on a healthy planet",
   description:
-    "Empowering communities and protecting the environment. Join us in creating lasting change.",
+    "Tony Foundation works for peace, dignity and equality on a healthy planet. Get involved.",
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
       <body className="font-body min-h-screen flex flex-col">
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
         <Footer />
       </body>
     </html>
