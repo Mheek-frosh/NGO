@@ -31,12 +31,6 @@ export default function Hero() {
             <p>{t("heroPara1")}</p>
             <p>{t("heroPara2")}</p>
           </div>
-          <a
-            href="#donate"
-            className="mt-8 inline-block w-fit rounded bg-un-blue px-8 py-3 font-semibold text-white hover:bg-un-blue-light transition"
-          >
-            {t("support")}
-          </a>
           <p className="mt-8 text-xs uppercase tracking-wide text-black/70">
             {t("photoCredit")}
           </p>

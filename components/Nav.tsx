@@ -11,6 +11,7 @@ const mainLinkKeys = ["aboutUs", "ourWork", "eventsAndNews", "getInvolved", "pul
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const { locale, setLocale, t } = useLanguage();
 
   return (
@@ -22,14 +23,52 @@ export default function Nav() {
         {t("skipToContent")}
       </a>
 
+      {/* Mobile: compact bar with expand arrow - visible only when collapsed */}
+      <div className={`flex items-center justify-between bg-nav-dark px-4 py-3 md:hidden ${!collapsed ? "hidden" : ""}`}>
+        <a href="#hero" className="flex items-center gap-2" onClick={() => setCollapsed(true)}>
+          <img src="/asset/logo.svg" alt="" width={32} height={32} className="h-8 w-8 object-contain" />
+          <span className="font-display font-bold text-white">Tony Foundation</span>
+        </a>
+        <button
+          type="button"
+          onClick={() => setCollapsed(!collapsed)}
+          className="flex h-10 w-10 items-center justify-center rounded text-white hover:bg-white/10"
+          aria-expanded={!collapsed}
+          aria-label={collapsed ? "Expand menu" : "Collapse menu"}
+        >
+          <motion.span
+            animate={{ rotate: collapsed ? 0 : 180 }}
+            transition={{ duration: 0.2 }}
+          >
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </motion.span>
+        </button>
+      </div>
+
+      {/* Full header - hidden on mobile when collapsed, visible on desktop */}
+      <div className={`md:block ${collapsed ? "hidden" : "block"}`}>
       <div className="bg-un-top-bar">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-sm lg:px-8">
-          <a href="#hero" className="flex items-center gap-2 text-un-navy hover:opacity-90">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setCollapsed(true)}
+              className="flex h-8 w-8 items-center justify-center rounded text-un-navy hover:bg-un-blue/20 md:hidden"
+              aria-label="Collapse menu"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+            <a href="#hero" className="flex items-center gap-2 text-un-navy hover:opacity-90">
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden>
               <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
             </svg>
             <span>{t("welcome")}</span>
           </a>
+          </div>
           <div className="flex flex-wrap items-center justify-end gap-3">
             {locales.map((loc) => (
               <button
@@ -197,6 +236,7 @@ export default function Nav() {
           )}
         </AnimatePresence>
       </nav>
+      </div>
     </header>
   );
 }
