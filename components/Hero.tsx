@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section id="hero" className="bg-white">
       <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
-        {/* Left: hero image (1.png) - full height of content */}
         <div className="relative min-h-[400px] lg:min-h-[560px]">
           <Image
             src="/asset/1.png"
@@ -18,31 +20,25 @@ export default function Hero() {
           />
         </div>
 
-        {/* Right: text block on white - UN style */}
         <div className="flex flex-col justify-center bg-white px-6 py-12 lg:px-12 lg:py-16">
           <p className="text-xs font-medium uppercase tracking-widest text-black">
-            Women and Gender Equality
+            {t("heroCategory")}
           </p>
           <h1 className="mt-3 font-display text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-[2.25rem]">
-            Rights. Justice. Action. For ALL Women and Girls
+            {t("heroTitle")}
           </h1>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-black sm:text-base">
-            <p>
-              This International Women&apos;s Day (8 March), demand equal rights and equal justice.
-              Women worldwide hold just 64% of the legal rights men do. At this pace, closing the
-              gap could take 286 years. From work and pay to safety, family, property, and
-              retirement, laws still disadvantage women and girls. It&apos;s time to dismantle
-              discriminatory laws and harmful norms. Join our campaign, use its materials and
-              follow our live event on 9 March ahead of the Commission on the Status of Women
-              (9–19 March), the world&apos;s largest annual forum dedicated to gender equality
-              and women&apos;s rights.
-            </p>
-            <p>
-              The time has come to make justice a reality for women and girls everywhere.
-            </p>
+            <p>{t("heroPara1")}</p>
+            <p>{t("heroPara2")}</p>
           </div>
+          <a
+            href="#donate"
+            className="mt-8 inline-block w-fit rounded bg-un-blue px-8 py-3 font-semibold text-white hover:bg-un-blue-light transition"
+          >
+            {t("support")}
+          </a>
           <p className="mt-8 text-xs uppercase tracking-wide text-black/70">
-            Photo: Adobe Stock / Sabrina
+            {t("photoCredit")}
           </p>
         </div>
       </div>

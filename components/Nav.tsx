@@ -2,27 +2,16 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
+import { type Locale, languageLabels } from "@/lib/translations";
 
-const languages = [
-  "العربية",
-  "中文",
-  "English",
-  "Français",
-  "Deutsch",
-  "Русский",
-  "Español",
-];
+const locales: Locale[] = ["ar", "zh", "en", "fr", "de", "ru", "es"];
 
-const mainLinks = [
-  { href: "#about", label: "About Us", sub: true },
-  { href: "#work", label: "Our Work", sub: true },
-  { href: "#news", label: "Events and News", sub: true },
-  { href: "#involved", label: "Get Involved", sub: true },
-  { href: "#pulse", label: "The Tony Foundation Pulse", sub: true },
-];
+const mainLinkKeys = ["aboutUs", "ourWork", "eventsAndNews", "getInvolved", "pulse"] as const;
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const { locale, setLocale, t } = useLanguage();
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -30,33 +19,32 @@ export default function Nav() {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-un-blue focus:px-4 focus:py-2 focus:text-white"
       >
-        Skip to main content
+        {t("skipToContent")}
       </a>
 
-      {/* Top bar: light blue - house icon + Welcome LEFT, languages RIGHT */}
       <div className="bg-un-top-bar">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-sm lg:px-8">
           <a href="#hero" className="flex items-center gap-2 text-un-navy hover:opacity-90">
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden>
               <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
             </svg>
-            <span>Welcome to Tony Foundation</span>
+            <span>{t("welcome")}</span>
           </a>
           <div className="flex flex-wrap items-center justify-end gap-3">
-            {languages.map((lang) => (
-              <a
-                key={lang}
-                href="#"
-                className={`text-un-blue hover:underline ${lang === "English" ? "font-semibold" : ""}`}
+            {locales.map((loc) => (
+              <button
+                key={loc}
+                type="button"
+                onClick={() => setLocale(loc)}
+                className={`text-un-blue hover:underline ${locale === loc ? "font-semibold" : ""}`}
               >
-                {lang}
-              </a>
+                {languageLabels[loc]}
+              </button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Main header: white - logo + title LEFT, Web TV + search + A-Z RIGHT */}
       <div className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 lg:px-8">
           <a href="#hero" className="flex items-center gap-4">
@@ -73,9 +61,7 @@ export default function Nav() {
               <h1 className="font-display text-xl font-bold text-black sm:text-2xl">
                 Tony Foundation
               </h1>
-              <p className="text-sm font-normal text-black/90">
-                Peace, dignity and equality on a healthy planet
-              </p>
+              <p className="text-sm font-normal text-black/90">{t("tagline")}</p>
             </div>
           </a>
           <div className="flex flex-wrap items-center gap-4">
@@ -83,54 +69,72 @@ export default function Nav() {
               href="#"
               className="rounded border-2 border-accent-red px-4 py-2 text-sm font-medium text-accent-red hover:bg-accent-red hover:text-white transition"
             >
-              Tony Foundation Web TV
+              {t("webTV")}
             </a>
             <form className="flex items-center gap-0 rounded border border-slate-300 bg-white" onSubmit={(e) => e.preventDefault()}>
-              <label htmlFor="site-search" className="sr-only">Search</label>
+              <label htmlFor="site-search" className="sr-only">{t("search")}</label>
               <input
                 id="site-search"
                 type="search"
-                placeholder="Search..."
+                placeholder={t("search") + "..."}
                 className="w-40 border-0 px-3 py-2 text-sm focus:ring-0 sm:w-56"
               />
-              <button type="submit" className="rounded-r border-l border-slate-300 bg-slate-100 p-2 text-slate-600 hover:bg-slate-200" aria-label="Search">
+              <button type="submit" className="rounded-r border-l border-slate-300 bg-slate-100 p-2 text-slate-600 hover:bg-slate-200" aria-label={t("search")}>
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </button>
             </form>
             <a href="#" className="text-sm font-medium text-un-blue hover:underline">
-              A-Z Site Index
+              {t("aToZ")}
             </a>
           </div>
         </div>
       </div>
 
-      {/* Primary nav: dark grey, white text, chevrons */}
       <nav className="bg-nav-dark" aria-label="Main">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <ul className="hidden items-center gap-0 md:flex">
-            {mainLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="flex items-center gap-1 px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition"
-                >
-                  {link.label}
-                  {link.sub && (
-                    <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                  )}
-                </a>
-              </li>
-            ))}
+            <li>
+              <a href="#about" className="flex items-center gap-1 px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition">
+                {t("aboutUs")}
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#work" className="flex items-center gap-1 px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition">
+                {t("ourWork")}
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#news" className="flex items-center gap-1 px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition">
+                {t("eventsAndNews")}
+              </a>
+            </li>
+            <li>
+              <a href="#involved" className="flex items-center gap-1 px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition">
+                {t("getInvolved")}
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#pulse" className="flex items-center gap-1 px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition">
+                {t("pulse")}
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </a>
+            </li>
             <li className="ml-auto">
-              <a
-                href="#donate"
-                className="block bg-un-blue px-5 py-3 text-sm font-semibold text-white hover:bg-un-blue-light transition"
-              >
-                Donate
+              <a href="#donate" className="block bg-un-blue px-5 py-3 text-sm font-semibold text-white hover:bg-un-blue-light transition">
+                {t("donate")}
               </a>
             </li>
           </ul>
@@ -168,14 +172,14 @@ export default function Nav() {
               className="overflow-hidden border-t border-white/10 bg-nav-dark md:hidden"
             >
               <ul className="flex flex-col py-2">
-                {mainLinks.map((link) => (
-                  <li key={link.href}>
+                {mainLinkKeys.map((key) => (
+                  <li key={key}>
                     <a
-                      href={link.href}
+                      href={`#${key === "aboutUs" ? "about" : key === "ourWork" ? "work" : key === "eventsAndNews" ? "news" : key === "getInvolved" ? "involved" : "pulse"}`}
                       onClick={() => setOpen(false)}
                       className="block px-4 py-3 text-white hover:bg-white/10"
                     >
-                      {link.label}
+                      {t(key)}
                     </a>
                   </li>
                 ))}
@@ -185,7 +189,7 @@ export default function Nav() {
                     onClick={() => setOpen(false)}
                     className="mx-4 mt-2 block bg-un-blue py-3 text-center font-semibold text-white"
                   >
-                    Donate
+                    {t("donate")}
                   </a>
                 </li>
               </ul>

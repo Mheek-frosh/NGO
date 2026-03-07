@@ -1,13 +1,15 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export default function Donate() {
+  const { t } = useLanguage();
+
   return (
     <section id="donate" className="border-b border-slate-200 bg-slate-50 py-14 lg:py-20">
       <div className="mx-auto max-w-3xl px-4 text-center lg:px-8">
-        <h2 className="font-display text-3xl font-bold text-un-navy">Donate to Tony Foundation</h2>
-        <p className="mt-4 text-slate-700">
-          98% of every dollar goes directly to programmes. Your support creates real impact.
-        </p>
+        <h2 className="font-display text-3xl font-bold text-un-navy">{t("donateTitle")}</h2>
+        <p className="mt-4 text-slate-700">{t("donateSub")}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           {[25, 50, 100, 250].map((amount) => (
             <button
@@ -22,7 +24,7 @@ export default function Donate() {
         <div className="mt-6">
           <input
             type="number"
-            placeholder="Other amount ($)"
+            placeholder={t("otherAmount")}
             className="w-full max-w-xs mx-auto rounded border-2 border-slate-200 px-4 py-3 text-center focus:border-un-blue focus:outline-none"
           />
         </div>
@@ -30,7 +32,7 @@ export default function Donate() {
           href="#donate"
           className="mt-8 inline-block bg-un-blue px-10 py-4 font-semibold text-white hover:bg-un-blue-light"
         >
-          Donate now
+          {t("donateNow")}
         </a>
       </div>
     </section>

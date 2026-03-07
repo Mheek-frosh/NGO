@@ -3,6 +3,7 @@ import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Providers from "@/components/Providers";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -30,9 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
       <body className="font-body min-h-screen flex flex-col">
-        <Nav />
-        <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
-        <Footer />
+        <Providers>
+          <Nav />
+          <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
