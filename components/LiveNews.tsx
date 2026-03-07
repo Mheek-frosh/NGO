@@ -1,26 +1,15 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
+const items = [
+  { titleKey: "news1Title", excerptKey: "news1Excerpt", image: "https://placehold.co/800x450/002B49/ffffff?text=Save+Girl+Child" },
+  { titleKey: "news2Title", excerptKey: "news2Excerpt", image: "https://placehold.co/800x450/002B49/ffffff?text=Education+Africa" },
+  { titleKey: "news3Title", excerptKey: "news3Excerpt", image: "https://placehold.co/800x450/002B49/ffffff?text=Orphans+Tech" },
+];
+
 export default function LiveNews() {
-  const items = [
-    {
-      title: "Justice takes centre stage: Tony Foundation welcomes world's largest women's rights event",
-      date: "6 March 2026",
-      excerpt: "Women have never been closer to equality and never closer to losing it, according to Tony Foundation ahead of the start of the world's largest gender equality gathering.",
-      image: "https://placehold.co/800x450/002B49/ffffff?text=Women+rights+event",
-    },
-    {
-      title: "MIDDLE EAST LIVE 6 March: World economy at grave risk, warns chief; 'the situation could spiral beyond anyone\'s control'",
-      date: "6 March 2026",
-      excerpt: "Military strikes and counter-strikes are continuing across the Middle East. With the world economy at grave risk, 'the situation could spiral...'",
-      image: "https://placehold.co/800x450/002B49/ffffff?text=Middle+East",
-    },
-    {
-      title: "MIDDLE EAST LIVE: Further escalation drives uncertainty and suffering",
-      date: "5 March 2026",
-      excerpt: "On day six, there's been no let-up in bombs, drones and rockets targeting multiple states, while NATO forces reportedly...",
-      image: "https://placehold.co/800x450/002B49/ffffff?text=Escalation",
-    },
-  ];
+  const { t } = useLanguage();
 
   return (
     <section id="pulse" className="border-b border-slate-200 bg-white py-10 lg:py-14">
@@ -29,18 +18,13 @@ export default function LiveNews() {
           {items.map((item, i) => (
             <article key={i} className="overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
               <div className="aspect-video w-full overflow-hidden bg-un-navy">
-                <img
-                  src={item.image}
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
+                <img src={item.image} alt="" className="h-full w-full object-cover" />
               </div>
               <div className="p-4">
                 <h3 className="font-display text-lg font-bold text-un-navy">
-                  <a href="#news" className="hover:text-un-blue">{item.title}</a>
+                  <a href="#news" className="hover:text-un-blue">{t(item.titleKey)}</a>
                 </h3>
-                <p className="mt-1 text-sm text-slate-500">{item.date}</p>
-                <p className="mt-2 text-sm text-slate-700">{item.excerpt}</p>
+                <p className="mt-2 text-sm text-slate-700">{t(item.excerptKey)}</p>
               </div>
             </article>
           ))}

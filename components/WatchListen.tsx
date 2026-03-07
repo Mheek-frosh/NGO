@@ -1,6 +1,9 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export default function WatchListen() {
+  const { t } = useLanguage();
   const items = [
     {
       title: "Indigenous teen codes new opportunities",
@@ -22,7 +25,7 @@ export default function WatchListen() {
   return (
     <section className="border-b border-slate-200 bg-white py-14 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <h2 className="font-display text-3xl font-bold text-un-navy">Watch and Listen</h2>
+        <h2 className="font-display text-3xl font-bold text-un-navy">{t("watchTitle")}</h2>
         <p className="mt-2 text-slate-700">
           Video and audio from across Tony Foundation and our worldwide family of agencies, funds, and programmes.
         </p>

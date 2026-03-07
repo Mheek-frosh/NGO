@@ -1,13 +1,16 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export default function Contact() {
+  const { t } = useLanguage();
   return (
     <section id="contact" className="border-b border-slate-200 bg-white py-14 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-2xl font-bold text-un-navy">Contact Tony Foundation</h2>
-            <p className="mt-4 text-slate-700">Get in touch for partnerships, media enquiries or general questions.</p>
+            <h2 className="font-display text-2xl font-bold text-un-navy">{t("contactTitle")}</h2>
+            <p className="mt-4 text-slate-700">{t("contactDesc")}</p>
             <p className="mt-6 font-medium text-un-navy">contact@tonyfoundation.org</p>
             <p className="mt-2 font-medium text-un-navy">+1 (555) 123-4567</p>
           </div>

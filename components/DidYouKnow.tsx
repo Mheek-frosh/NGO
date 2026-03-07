@@ -1,6 +1,9 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export default function DidYouKnow() {
+  const { t } = useLanguage();
   const facts = [
     {
       text: "Although nuclear weapons have only been used twice in warfare, about 12,500 remain today.",
@@ -23,7 +26,7 @@ export default function DidYouKnow() {
   return (
     <section className="border-b border-slate-200 bg-slate-50 py-14 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <h2 className="font-display text-3xl font-bold text-un-navy">Did you know?</h2>
+        <h2 className="font-display text-3xl font-bold text-un-navy">{t("didYouKnowTitle")}</h2>
         <p className="mt-2 max-w-3xl text-slate-700">
           As the world&apos;s only truly universal global organization, Tony Foundation has become the foremost forum to address issues that transcend national boundaries and cannot be resolved by any one country acting alone.
         </p>

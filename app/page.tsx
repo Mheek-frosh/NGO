@@ -9,7 +9,6 @@ import DidYouKnow from "@/components/DidYouKnow";
 import WatchListen from "@/components/WatchListen";
 import InPictures from "@/components/InPictures";
 import GetInvolved from "@/components/GetInvolved";
-import Donate from "@/components/Donate";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -26,7 +25,6 @@ export default function Home() {
       <WatchListen />
       <InPictures />
       <GetInvolved />
-      <Donate />
       <Contact />
     </>
   );

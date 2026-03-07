@@ -1,14 +1,17 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export default function SDGSection() {
+  const { t } = useLanguage();
   return (
     <section id="work" className="border-b border-slate-200 bg-white py-14 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <h2 className="font-display text-3xl font-bold text-un-navy">
-          Tony Foundation Sustainable Development Goals
+          {t("sdgTitle")}
         </h2>
         <h3 className="mt-2 text-xl font-semibold text-slate-700">
-          17 Goals to transform our world
+          {t("sdgSubtitle")}
         </h3>
         <p className="mt-4 max-w-3xl text-slate-700">
           The Sustainable Development Goals are a call for action by all countries — poor, rich

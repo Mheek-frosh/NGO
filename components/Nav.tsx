@@ -172,8 +172,8 @@ export default function Nav() {
               </a>
             </li>
             <li className="ml-auto">
-              <a href="#donate" className="block bg-un-blue px-5 py-3 text-sm font-semibold text-white hover:bg-un-blue-light transition">
-                {t("donate")}
+              <a href="#involved" className="block bg-un-blue px-5 py-3 text-sm font-semibold text-white hover:bg-un-blue-light transition">
+                {t("getInvolved")}
               </a>
             </li>
           </ul>
@@ -224,11 +224,11 @@ export default function Nav() {
                 ))}
                 <li>
                   <a
-                    href="#donate"
+                    href="#involved"
                     onClick={() => setOpen(false)}
                     className="mx-4 mt-2 block bg-un-blue py-3 text-center font-semibold text-white"
                   >
-                    {t("donate")}
+                    {t("getInvolved")}
                   </a>
                 </li>
               </ul>

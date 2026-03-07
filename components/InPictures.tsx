@@ -1,6 +1,9 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export default function InPictures() {
+  const { t } = useLanguage();
   const stories = [
     {
       title: "Their teacher knows their journey",
@@ -20,7 +23,7 @@ export default function InPictures() {
     <section className="border-b border-slate-200 bg-slate-50 py-14 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <h2 className="font-display text-3xl font-bold text-un-navy">
-          Tony Foundation in Pictures
+          {t("picturesTitle")}
         </h2>
         <p className="mt-2 text-slate-700">
           Images from across Tony Foundation and our worldwide family of agencies, funds, and programmes.

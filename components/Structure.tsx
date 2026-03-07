@@ -1,6 +1,9 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export default function Structure() {
+  const { t } = useLanguage();
   const bodies = [
     {
       title: "General Assembly",
@@ -32,7 +35,7 @@ export default function Structure() {
     <section className="border-b border-slate-200 bg-slate-50 py-14 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <h2 className="font-display text-3xl font-bold text-un-navy">
-          Structure of Tony Foundation
+          {t("structureTitle")}
         </h2>
         <p className="mt-4 max-w-3xl text-slate-700">
           The main parts of the structure are the General Assembly, the Security Council, the Economic and Social Council, the Trusteeship Council, the International Court of Justice, and the Secretariat. All were established when the organization was founded.

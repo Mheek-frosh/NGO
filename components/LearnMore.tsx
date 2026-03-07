@@ -1,6 +1,9 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export default function LearnMore() {
+  const { t } = useLanguage();
   const items = [
     {
       title: "Selecting the next Secretary-General",
@@ -27,7 +30,7 @@ export default function LearnMore() {
   return (
     <section className="border-b border-slate-200 bg-white py-14 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <h2 className="font-display text-3xl font-bold text-un-navy">Learn more</h2>
+        <h2 className="font-display text-3xl font-bold text-un-navy">{t("learnMoreTitle")}</h2>
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item, i) => (
             <article key={i} className="overflow-hidden rounded-lg border border-slate-200 shadow-sm">
