@@ -14,8 +14,11 @@ const config: Config = {
           blue: "#009EDB",
           "blue-light": "#4DA6C8",
           "blue-pale": "#E8F4F8",
+          "top-bar": "#D4E9F2",
           white: "#FFFFFF",
         },
+        "nav-dark": "#2C3E50",
+        "accent-red": "#E31837",
         slate: {
           850: "#1E293B",
           950: "#0F172A",

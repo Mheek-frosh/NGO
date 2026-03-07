@@ -9,10 +9,6 @@ const languages = [
   "English",
   "Français",
   "Deutsch",
-  "Kreyòl",
-  "Bahasa Indonesia",
-  "Italiano",
-  "Polski",
   "Русский",
   "Español",
 ];
@@ -20,19 +16,16 @@ const languages = [
 const mainLinks = [
   { href: "#about", label: "About Us", sub: true },
   { href: "#work", label: "Our Work", sub: true },
-  { href: "#news", label: "Events and News" },
-  { href: "#involved", label: "Get Involved" },
-  { href: "#pulse", label: "The Tony Foundation Pulse" },
+  { href: "#news", label: "Events and News", sub: true },
+  { href: "#involved", label: "Get Involved", sub: true },
+  { href: "#pulse", label: "The Tony Foundation Pulse", sub: true },
 ];
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-un-navy shadow-lg">
-      {/* Skip to main content - UN style */}
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-un-blue focus:px-4 focus:py-2 focus:text-white"
@@ -40,103 +33,95 @@ export default function Nav() {
         Skip to main content
       </a>
 
-      {/* Top bar: Languages LEFT, Welcome RIGHT - exact UN layout */}
-      <div className="border-b border-un-blue/30 bg-un-navy">
+      {/* Top bar: light blue - house icon + Welcome LEFT, languages RIGHT */}
+      <div className="bg-un-top-bar">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-sm lg:px-8">
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setLangOpen(!langOpen)}
-              className="flex items-center gap-1 text-white/90 hover:text-white"
-              aria-expanded={langOpen}
-              aria-haspopup="true"
-            >
-              <span>Toggle navigation</span>
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <AnimatePresence>
-              {langOpen && (
-                <motion.ul
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  className="absolute left-0 top-full z-50 mt-1 min-w-[180px] list-none rounded border border-un-blue/30 bg-un-navy py-2 shadow-xl"
-                >
-                  {languages.map((lang) => (
-                    <li key={lang}>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-white/90 hover:bg-un-blue/30 hover:text-white"
-                      >
-                        {lang}
-                      </a>
-                    </li>
-                  ))}
-                </motion.ul>
-              )}
-            </AnimatePresence>
+          <a href="#hero" className="flex items-center gap-2 text-un-navy hover:opacity-90">
+            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden>
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+            </svg>
+            <span>Welcome to Tony Foundation</span>
+          </a>
+          <div className="flex flex-wrap items-center justify-end gap-3">
+            {languages.map((lang) => (
+              <a
+                key={lang}
+                href="#"
+                className={`text-un-blue hover:underline ${lang === "English" ? "font-semibold" : ""}`}
+              >
+                {lang}
+              </a>
+            ))}
           </div>
-          <span className="text-un-blue-light">Welcome to Tony Foundation</span>
         </div>
       </div>
 
-      {/* Search the United Nations - UN style block */}
-      <div className="border-b border-un-blue/20 bg-un-navy/98">
+      {/* Main header: white - logo + title LEFT, Web TV + search + A-Z RIGHT */}
+      <div className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 lg:px-8">
-          <div className="flex flex-1 flex-wrap items-center gap-4">
-            <h2 className="text-lg font-semibold text-white">Search Tony Foundation</h2>
-            <form className="flex min-w-0 flex-1 gap-2 sm:min-w-[280px]" onSubmit={(e) => e.preventDefault()}>
+          <a href="#hero" className="flex items-center gap-4">
+            <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-un-blue-pale">
+              <img
+                src="/asset/logo.svg"
+                alt="Tony Foundation"
+                width={56}
+                height={56}
+                className="h-full w-full object-contain p-1"
+              />
+            </div>
+            <div>
+              <h1 className="font-display text-xl font-bold text-black sm:text-2xl">
+                Tony Foundation
+              </h1>
+              <p className="text-sm font-normal text-black/90">
+                Peace, dignity and equality on a healthy planet
+              </p>
+            </div>
+          </a>
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="#"
+              className="rounded border-2 border-accent-red px-4 py-2 text-sm font-medium text-accent-red hover:bg-accent-red hover:text-white transition"
+            >
+              Tony Foundation Web TV
+            </a>
+            <form className="flex items-center gap-0 rounded border border-slate-300 bg-white" onSubmit={(e) => e.preventDefault()}>
               <label htmlFor="site-search" className="sr-only">Search</label>
               <input
                 id="site-search"
                 type="search"
                 placeholder="Search..."
-                className="min-w-0 flex-1 rounded border border-un-blue/40 bg-white px-3 py-2 text-un-navy placeholder:text-slate-400 focus:border-un-blue focus:outline-none"
+                className="w-40 border-0 px-3 py-2 text-sm focus:ring-0 sm:w-56"
               />
-              <button type="submit" className="rounded bg-un-blue px-4 py-2 text-sm font-medium text-white hover:bg-un-blue-light">
-                Submit Search
+              <button type="submit" className="rounded-r border-l border-slate-300 bg-slate-100 p-2 text-slate-600 hover:bg-slate-200" aria-label="Search">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
               </button>
             </form>
-          </div>
-          <a href="#" className="text-sm text-un-blue-light hover:text-white">A-Z Site Index</a>
-        </div>
-      </div>
-
-      {/* Live now - UN has this */}
-      <div className="border-b border-un-blue/20 bg-un-navy">
-        <div className="mx-auto max-w-7xl px-4 py-2 lg:px-8">
-          <span className="text-sm text-un-blue-light">Live now</span>
-        </div>
-      </div>
-
-      {/* Logo + tagline - UN style */}
-      <div className="border-b border-un-blue/20 bg-un-navy">
-        <div className="mx-auto max-w-7xl px-4 py-4 lg:px-8">
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
-            <a href="#hero" className="font-display text-2xl font-bold text-white sm:text-3xl">
-              Tony Foundation
+            <a href="#" className="text-sm font-medium text-un-blue hover:underline">
+              A-Z Site Index
             </a>
-            <p className="text-sm text-un-blue-light sm:text-base">
-              Peace, dignity and equality on a healthy planet
-            </p>
           </div>
         </div>
       </div>
 
-      {/* Main navigation - UN style */}
-      <nav className="border-t border-un-blue/20 bg-un-navy" aria-label="Main">
+      {/* Primary nav: dark grey, white text, chevrons */}
+      <nav className="bg-nav-dark" aria-label="Main">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <ul className="hidden items-center gap-0 md:flex">
             {mainLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="block px-4 py-3 text-sm font-medium text-white hover:bg-un-blue/20 transition"
+                  className="flex items-center gap-1 px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition"
                 >
                   {link.label}
-                  {link.sub && <span className="ml-0.5 text-un-blue-light">»</span>}
+                  {link.sub && (
+                    <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  )}
                 </a>
               </li>
             ))}
@@ -151,7 +136,7 @@ export default function Nav() {
           </ul>
 
           <div className="flex items-center justify-between py-3 md:hidden">
-            <span className="text-sm text-white/80">Menu</span>
+            <span className="text-sm text-white/90">Menu</span>
             <button
               type="button"
               onClick={() => setOpen(!open)}
@@ -180,7 +165,7 @@ export default function Nav() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="overflow-hidden border-t border-un-blue/20 bg-slate-850 md:hidden"
+              className="overflow-hidden border-t border-white/10 bg-nav-dark md:hidden"
             >
               <ul className="flex flex-col py-2">
                 {mainLinks.map((link) => (
@@ -188,7 +173,7 @@ export default function Nav() {
                     <a
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className="block px-4 py-3 text-white hover:bg-un-blue/20"
+                      className="block px-4 py-3 text-white hover:bg-white/10"
                     >
                       {link.label}
                     </a>
