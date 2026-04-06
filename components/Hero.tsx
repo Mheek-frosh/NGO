@@ -3,6 +3,13 @@
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
+/**
+ * Hero Component
+ * 
+ * Displays the main introduction section on the landing page.
+ * Uses the `useLanguage` hook to support localization/i18n.
+ * Features a split layout with an image on the left and text on the right (on large screens).
+ */
 export default function Hero() {
   const { t } = useLanguage();
 

@@ -5,7 +5,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Play, X } from "lucide-react";
 
+/**
+ * StoryVideo Component
+ * 
+ * Renders a promotional video section with a thumbnail and a play button.
+ * Clicking the play button opens a full-screen modal with an embedded YouTube video overlay.
+ * Uses framer-motion for smooth entrance animations and layout shifts.
+ */
 export default function StoryVideo() {
+    // State to track if the video modal is currently open
     const [isPlaying, setIsPlaying] = useState(false);
 
     return (

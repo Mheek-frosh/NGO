@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Droplet, Sun, Wind, Recycle } from "lucide-react";
 
+// Array of statistics to display in the grid
+// Each stat includes an icon from lucide-react and localized description (hardcoded for now)
 const stats = [
     {
         id: 1,
@@ -34,6 +36,12 @@ const stats = [
     },
 ];
 
+/**
+ * Stats Component
+ * 
+ * Renders a grid of key impact statistics with animated numbers and icons.
+ * Utilizes framer-motion for scroll-triggered reveal animations.
+ */
 export default function Stats() {
     return (
         <section className="relative bg-cream py-24 sm:py-32 overflow-hidden">

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Leaf, Award, Globe, Users } from "lucide-react";
 
+// Pre-defined list of important milestone events in the NGO's history
 const timelineEvents = [
     {
         year: "2011",
@@ -35,13 +36,21 @@ const timelineEvents = [
     },
 ];
 
+/**
+ * Timeline Component
+ * 
+ * Displays a vertical scroll-animated timeline of major organizational milestones.
+ * Includes a dynamic progress bar that fills up as the user scrolls down the page.
+ */
 export default function Timeline() {
+    // Reference to the timeline container to track scrolling progress
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start center", "end center"],
     });
 
+    // Apply spring physics to smooth out the scroll progress line animation
     const springProgress = useSpring(scrollYProgress, {
         stiffness: 100,
         damping: 30,
